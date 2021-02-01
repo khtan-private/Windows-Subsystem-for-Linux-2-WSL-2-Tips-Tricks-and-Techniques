@@ -1,11 +1,11 @@
 import datetime
 from platform import uname
 from flask import Flask
-app = Flask(__name__)
+server = Flask(__name__)
 
+@server.route("/")
 def getgreeting():
     return uname()[0] + " | " + uname()[1] + " | " + str(datetime.datetime.now())
 
-@app.route("/")
-def home():
-    return f"<html><body><h1>{getgreeting()}</h1></body></html>"
+if __name__ == "__main__":
+    server.run(host='0.0.0.0')
